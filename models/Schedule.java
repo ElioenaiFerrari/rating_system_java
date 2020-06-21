@@ -10,14 +10,18 @@ package ratingsystem.models;
  * @author devapp
  */
 public class Schedule {
+
+    
     private String locale;
     private String monitor;
     private String schedule;
-    
-    public Schedule(String locale, String monitor, String schedule){
+    private String stars;
+
+    public Schedule(String locale, String monitor, String schedule, String stars){
         setLocale(locale);
         setMonitor(monitor);
         setSchedule(schedule);
+        setStars(stars);
     }
     /**
      * @return the locale
@@ -59,6 +63,20 @@ public class Schedule {
      */
     public void setSchedule(String schedule) {
         this.schedule = schedule;
+    }
+    
+    /**
+     * @return the stars
+     */
+    public String getStars() {
+        return stars;
+    }
+
+    /**
+     * @param stars the stars to set
+     */
+    public void setStars(String stars) {
+        this.stars = stars;
     }
    
 }

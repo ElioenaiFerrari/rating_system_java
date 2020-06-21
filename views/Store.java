@@ -24,8 +24,11 @@ public class Store extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) monitorTable.getModel();
         Helper helper = new Helper("schedule.txt");
-            
-        helper.loadingTableData(model);
+        
+        if(helper.fileReader().length()>0){
+            helper.loadingTableData(model);
+        }
+//        helper.loadingTableData(model);
     }
 
     /**
@@ -151,7 +154,7 @@ public class Store extends javax.swing.JFrame {
                     schedule
                 });
                 
-                helper.writeFile(new Schedule(locale, monitor, schedule));
+                helper.writeFile(new Schedule(locale, monitor, schedule, null));
                
             }
         }catch(Exception error){

@@ -35,20 +35,20 @@ public class Helper {
     public void loadingTableData(DefaultTableModel model){
         String[] content = this.fileReader().split("\n");
         
-        for(int index=0;index<content.length;index++){
-            model.addRow(new Object[]{
-                content[index].split(",")[0],
-                content[index].split(",")[1],
-                content[index].split(",")[2],
-            });
-        }
+           for(int index=0;index<content.length;index++){
+                 model.addRow(new Object[]{
+                    content[index].split(",")[0],
+                    content[index].split(",")[1],
+                    content[index].split(",")[2],
+                });
+            }
     }
 
     public void writeFile(Schedule schedule) {
         try  {
             FileWriter writer = new FileWriter(getPath(), true);
             
-            String content = schedule.getLocale() + "," + schedule.getMonitor() + "," + schedule.getSchedule();
+            String content = schedule.getLocale() + "," + schedule.getMonitor() + "," + schedule.getSchedule() + "," + schedule.getStars();
             
             
             

@@ -7,6 +7,7 @@ package ratingsystem.views;
 
 import javax.swing.table.DefaultTableModel;
 import ratingsystem.Helper;
+import ratingsystem.models.Schedule;
 
 /**
  *
@@ -23,7 +24,9 @@ public class Update extends javax.swing.JFrame {
         Helper helper = new Helper("schedule.txt");
         DefaultTableModel model = (DefaultTableModel) ratingTable.getModel();
         
-        helper.loadingTableData(model);
+         if(helper.fileReader().length()>0){
+            helper.loadingTableData(model);
+        }
     }
 
     /**
@@ -80,6 +83,11 @@ public class Update extends javax.swing.JFrame {
         ratingStars.setText("1");
 
         btnRating.setText("Votar");
+        btnRating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRatingActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Estrelas");
 
@@ -144,6 +152,26 @@ public class Update extends javax.swing.JFrame {
              ratingStars.setText(Integer.toString(stars));
         }
     }//GEN-LAST:event_btnAddStarActionPerformed
+
+    private void btnRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRatingActionPerformed
+        Helper helper = new Helper("rating.txt");
+        DefaultTableModel model = (DefaultTableModel) ratingTable.getModel();
+        String rating = ratingStars.getText(); 
+        int currentRow = ratingTable.getSelectedRow();
+        
+        if(currentRow != -1){
+            Schedule schedule = new Schedule(
+             model.getValueAt(currentRow, 0).toString(),
+             model.getValueAt(currentRow, 1).toString(),
+             model.getValueAt(currentRow, 2).toString(),
+             rating
+            );
+            
+            helper.writeFile(schedule);
+        }
+       
+        
+    }//GEN-LAST:event_btnRatingActionPerformed
 
     /**
      * @param args the command line arguments
